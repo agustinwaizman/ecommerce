@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from apps.users.views import Login, Logout, UserToken
+from apps.users.views import Login, Logout
 
 
 schema_view = get_schema_view(
