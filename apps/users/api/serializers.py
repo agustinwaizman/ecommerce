@@ -39,8 +39,8 @@ class UserListSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return {
-            'id': instance.id,
-            'username': instance.username,
-            'email': instance.email,
-            'password': instance.password
+            'id': instance['id'],
+            'username': instance['username'],
+            'email': instance['email'],
+            'name': instance['name']
         }
