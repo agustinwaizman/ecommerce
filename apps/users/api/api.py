@@ -19,3 +19,10 @@ class UserViewSet(viewsets.GenericViewSet):
         users = self.get_queryset()
         users_serializer = self.list_serializer_class(users, many=True)
         return Response(users_serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request):
+        user_serializer = self.serializer_class(data=request.data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return Response({'message':'usuario creado correctamente'}, status=status.HTTP_201_CREATED)
+        return Response({'message':'error en el registro','error':user_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
