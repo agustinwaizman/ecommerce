@@ -33,6 +33,13 @@ class UserSerializer(serializers.ModelSerializer):
         update_user.save()
         return update_user
 
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'name', 'last_name')
+
+
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
