@@ -11,10 +11,12 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         return token
 
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'name', 'last_name')
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,6 +50,7 @@ class PasswordSerializer(serializers.Serializer):
         if data['password'] != data['password2']:
             raise serializers.ValidationError('Las contraseñas no coinciden')
         return data
+
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:

@@ -21,7 +21,6 @@ class UserViewSet(viewsets.GenericViewSet):
             self.queryset = self.model.objects.filter(is_active=True).values('id', 'username', 'email', 'name')
         return self.queryset
 
-
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
         user = self.get_object(pk)
@@ -31,7 +30,6 @@ class UserViewSet(viewsets.GenericViewSet):
             user.save()
             return Response({'message':'contraseña actualizada correctamente'}, status=status.HTTP_200_OK)
         return Response({'message':'error en la actualizacion','error':password_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
 
     def list(self, request):
         users = self.get_queryset()

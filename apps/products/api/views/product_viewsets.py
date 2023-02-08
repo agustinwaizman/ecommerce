@@ -2,11 +2,12 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from apps.products.api.serializers.product_serializers import ProductSerializer
+from rest_framework.parsers import JSONParser, MultiPartParser
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
-    
+    parser_classes = (JSONParser, MultiPartParser,)
 
     def get_queryset(self, pk=None):
         if pk is None:
@@ -39,4 +40,3 @@ class ProductViewSet(viewsets.ModelViewSet):
                 product_serializer.save()
                 return Response(product_serializer.data, status=status.HTTP_200_OK)
             return Response(product_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
